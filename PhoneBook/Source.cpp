@@ -67,3 +67,13 @@ void display()
 		d = d->link;
 	}
 }
+int menu()
+{
+	int ans;
+	cout << "Enter 1:-To add contents to phonebook";
+	cout << "Enter 2:-To delete contents of phonebook";
+	cout << "Enter 3:- To display contents of phonebook";
+	cout << "Enter 4:- To Exit";
+	cin >> ans;
+	return ans;
+}
