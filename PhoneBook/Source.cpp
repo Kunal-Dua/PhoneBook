@@ -32,11 +32,11 @@ void insertnode()
 	struct node* temp,*t;
 	temp = createnode();
 	cout << "Enter contact name";
-	getline(cin, t->name);
+	getline(cin, temp->name);
 	cout << "Enter contact phonenumber";
-	cin >> t->phonenumber;
+	cin >> temp->phonenumber;
 	cout << "Enter contact email id";
-	getline(cin, t->emailid);
+	getline(cin, temp->emailid);
 	if (START==NULL)
 	{
 		START = temp;
@@ -49,5 +49,21 @@ void insertnode()
 			t = t->link;
 		}
 		temp = t;
+	}
+}
+void display()
+{
+	struct node* d;
+	d = START;
+	cout << "Phone book contents";
+	cout << "Name";
+	cout << "Phone Number";
+	cout << "Email ID";
+	while (d!=NULL)
+	{
+		cout << d->name;
+		cout << d->phonenumber;
+		cout << d->emailid;
+		d = d->link;
 	}
 }
