@@ -13,8 +13,10 @@ int menu();
 struct node
 {
 	int phonenumber;
-	char name[15];
-	char emailid[20];
+	string name;
+	string emailid;
+	//char name[15];
+	//char emailid[20];
 	struct node* link;
 };
 struct node* START = NULL;
@@ -30,5 +32,22 @@ void insertnode()
 	struct node* temp,*t;
 	temp = createnode();
 	cout << "Enter contact name";
-	cin >> temp->name;
+	getline(cin, t->name);
+	cout << "Enter contact phonenumber";
+	cin >> t->phonenumber;
+	cout << "Enter contact email id";
+	getline(cin, t->emailid);
+	if (START==NULL)
+	{
+		START = temp;
+	}
+	else
+	{
+		t = START;
+		while (t!=NULL)
+		{
+			t = t->link;
+		}
+		temp = t;
+	}
 }
