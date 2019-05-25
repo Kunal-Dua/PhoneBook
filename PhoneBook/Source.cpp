@@ -77,3 +77,29 @@ int menu()
 	cin >> ans;
 	return ans;
 }
+int main()
+{
+	cout << "Welcome to phonebook";
+	while (1)
+	{
+		switch (menu())
+		{
+		case 1:
+			insertnode();
+			break;
+		case 2:
+			deletenode();
+			break;
+		case 3:
+			display();
+			break;
+		case 4:
+			cout << "Exiting";
+			char getch();
+			exit(1);
+		default:
+			cout << "Wrong input" << endl;
+			break;
+		}
+	}
+}
