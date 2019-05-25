@@ -56,6 +56,46 @@ void insertnode()
 		t->link = temp;
 	}
 }
+void deletenode()
+{
+	if (START==NULL)
+	{
+		cout << "No contacts in phone book" << endl;
+		return;
+	}
+	char ph[9];
+	cout << "Enter phone number to be deleted";
+	cin >> ph;
+	struct node* t,* del;
+	struct node* temp, * prev;
+	if (START->phonenumber==ph)
+	{
+		cout << "Contact with phone number " << ph << " deleted" << endl;
+		del = START;
+		START == NULL;
+		delete del;
+		return;
+	}
+	else
+	{
+		temp = START;
+		prev = temp;
+		while (temp != NULL && temp->phonenumber != ph)//looking for previous node of node to be deleted to deleted
+		{
+			prev = temp;
+			temp = temp->link;
+		}
+		if (temp == NULL)//phone number not in database
+		{
+			cout << "No contact with phone number " << ph << " is present in the database" << endl;
+			return;
+		}
+		prev->link = temp->link;
+		delete temp;//freeing memory
+		delete prev;//freeing memory
+		cout << "Contact deleted successfully" << endl;
+	}
+}
 void searchnode()
 {
 	if (START == NULL)
@@ -133,7 +173,8 @@ int menu()
 	cout << "Enter 1:-To add contents to phonebook"<<endl;
 	cout << "Enter 2:-To delete contents of phonebook"<<endl;
 	cout << "Enter 3:- To display contents of phonebook"<<endl;
-	cout << "Enter 4:- To Exit"<<endl;
+	cout << "Enter 4:- To search contents of phonebook" << endl;
+	cout << "Enter 5:- To Exit"<<endl;
 	cin >> ans;
 	return ans;
 }
@@ -147,13 +188,16 @@ int main()
 		case 1:
 			insertnode();
 			break;
-		/*case 2:
+		case 2:
 			deletenode();
-			break;*/
+			break;
 		case 3:
 			display();
 			break;
 		case 4:
+			searchnode();
+			break;
+		case 5:
 			cout << "Exiting"<<endl;
 			int getch();
 			exit(1);
