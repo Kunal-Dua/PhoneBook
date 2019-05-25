@@ -7,16 +7,15 @@ using namespace std;
 
 void insertnode();
 void deletenode();
+void searchnode();
 void display();
 int menu();
 
+int serialnumber=0;
 struct node
 {
-	int phonenumber;
-	string name;
-	string emailid;
-	//char name[15];
-	//char emailid[20];
+	int sno=0;
+	char name[15], emailid[20], phonenumber[9];
 	struct node* link;
 };
 struct node* START = NULL;
@@ -31,12 +30,18 @@ void insertnode()
 {
 	struct node* temp,*t;
 	temp = createnode();
-	cout << "Enter contact name";
-	getline(cin, temp->name);
-	cout << "Enter contact phonenumber";
+	serialnumber++;
+	temp->sno = serialnumber;
+	cout << "Enter information about the contact\n";
+	cout << "Enter contact name ";
+	cin >> temp->name;
+	fflush(stdin);
+	cout << "Enter contact phone number ";
 	cin >> temp->phonenumber;
-	cout << "Enter contact email id";
-	getline(cin, temp->emailid);
+	fflush(stdin);
+	cout << "Enter contact email id ";
+	cin >> temp->emailid;
+	fflush(stdin);
 	if (START==NULL)
 	{
 		START = temp;
@@ -44,42 +49,97 @@ void insertnode()
 	else
 	{
 		t = START;
-		while (t!=NULL)
+		while (t->link != NULL)
 		{
 			t = t->link;
 		}
-		temp = t;
+		t->link = temp;
+	}
+}
+void searchnode()
+{
+	if (START == NULL)
+	{
+		cout << "No numbers present in the phone book" << endl;
+		return;
+	}
+	char ph[9];
+	cout << "Enter phone number to be found ";
+	cin >> ph;
+	struct node* t;
+	t = START;
+	if (START->phonenumber==ph)
+	{
+		cout << "Phone book contents" << endl;
+		cout << "Sno.\t";
+		cout << "Name\t";
+		cout << "Number\t";
+		cout << "Email ID\t";
+		cout << endl;
+		cout << t->sno << "\t";
+		cout << t->name << "\t";
+		cout << t->phonenumber << "\t";
+		cout << t->emailid << "\t";
+	}
+	else
+	{
+		while (t->link != NULL)
+		{
+			if (ph == t->phonenumber)
+			{
+				cout << "Phone book contents" << endl;
+				cout << "Sno.\t";
+				cout << "Name\t";
+				cout << "Number\t";
+				cout << "Email ID\t";
+				cout << endl;
+				cout << t->sno << "\t";
+				cout << t->name << "\t";
+				cout << t->phonenumber << "\t";
+				cout << t->emailid << "\t";
+			}
+			t = t->link;
+		}
+		cout << "Contact deleted " << ph << endl;
 	}
 }
 void display()
 {
 	struct node* d;
 	d = START;
-	cout << "Phone book contents";
-	cout << "Name";
-	cout << "Phone Number";
-	cout << "Email ID";
+	if (START==NULL)
+	{
+		cout << "No items in phone book\n";
+		return;
+	}
+	cout << "Phone book contents"<<endl;
+	cout << "Sno.\t";
+	cout << "Name\t";
+	cout << "Number\t";
+	cout << "Email ID\t";
 	while (d!=NULL)
 	{
-		cout << d->name;
-		cout << d->phonenumber;
-		cout << d->emailid;
+		cout << endl;
+		cout << d->sno << "\t";
+		cout << d->name<<"\t";
+		cout << d->phonenumber<<"\t";
+		cout << d->emailid<<"\t";
 		d = d->link;
 	}
 }
 int menu()
 {
 	int ans;
-	cout << "Enter 1:-To add contents to phonebook";
-	cout << "Enter 2:-To delete contents of phonebook";
-	cout << "Enter 3:- To display contents of phonebook";
-	cout << "Enter 4:- To Exit";
+	cout << "Enter 1:-To add contents to phonebook"<<endl;
+	cout << "Enter 2:-To delete contents of phonebook"<<endl;
+	cout << "Enter 3:- To display contents of phonebook"<<endl;
+	cout << "Enter 4:- To Exit"<<endl;
 	cin >> ans;
 	return ans;
 }
 int main()
 {
-	cout << "Welcome to phonebook";
+	cout << "Welcome to phonebook"<<endl;
 	while (1)
 	{
 		switch (menu())
@@ -87,19 +147,23 @@ int main()
 		case 1:
 			insertnode();
 			break;
-		case 2:
+		/*case 2:
 			deletenode();
-			break;
+			break;*/
 		case 3:
 			display();
 			break;
 		case 4:
-			cout << "Exiting";
-			char getch();
+			cout << "Exiting"<<endl;
+			int getch();
 			exit(1);
 		default:
 			cout << "Wrong input" << endl;
-			break;
+			exit(1);
 		}
+		_getch();
+		system("cls");
 	}
+	_getch();
+	return 0;
 }
