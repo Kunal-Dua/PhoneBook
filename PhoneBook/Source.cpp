@@ -16,6 +16,7 @@ struct node
 {
 	int sno=0;
 	string name, emailid, phonenumber;
+	
 	struct node* link;
 };
 struct node* START = NULL;
@@ -29,6 +30,7 @@ struct node * createnode()
 void insertnode()//to insert node at end of database
 {
 	struct node* temp,*t;
+	char hou, sta, cit, nation;
 	temp = createnode();
 	serialnumber++;
 	temp->sno = serialnumber;
@@ -155,17 +157,17 @@ void display()//to display the linked list
 		return;
 	}
 	cout << "Phone book contents"<<endl;
-	cout << "Sno.\t";
-	cout << "Name\t";
-	cout << "Number\t";
-	cout << "Email ID\t";
+	cout << "Sno.\t\t";
+	cout << "Name\t\t";
+	cout << "Number\t\t";
+	cout << "Email ID\t\t";
 	while (d!=NULL)
 	{
 		cout << endl;
-		cout << d->sno << "\t";
-		cout << d->name<<"\t";
-		cout << d->phonenumber<<"\t";
-		cout << d->emailid<<"\t";
+		cout << d->sno << "\t\t";
+		cout << d->name<<"\t\t";
+		cout << d->phonenumber<<"\t\t";
+		cout << d->emailid<<"\t\t";
 		d = d->link;
 	}
 }
@@ -182,7 +184,7 @@ int menu()
 }
 int main()
 {
-	cout << "Welcome to phonebook"<<endl;
+	cout << "Welcome to Phone Book"<<endl;
 	while (1)
 	{
 		switch (menu())
