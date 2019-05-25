@@ -15,7 +15,7 @@ int serialnumber=0;
 struct node
 {
 	int sno=0;
-	char name[15], emailid[20], phonenumber[9];
+	string name, emailid, phonenumber;
 	struct node* link;
 };
 struct node* START = NULL;
@@ -26,21 +26,23 @@ struct node * createnode()
 	t->link = NULL;
 	return t;
 }
-void insertnode()
+void insertnode()//to insert node at end of database
 {
 	struct node* temp,*t;
 	temp = createnode();
 	serialnumber++;
 	temp->sno = serialnumber;
 	cout << "Enter information about the contact\n";
+	fflush(stdin);
 	cout << "Enter contact name ";
-	cin >> temp->name;
+	cin.ignore();
+	getline(cin, temp->name);
 	fflush(stdin);
 	cout << "Enter contact phone number ";
-	cin >> temp->phonenumber;
+	getline(cin, temp->phonenumber);
 	fflush(stdin);
 	cout << "Enter contact email id ";
-	cin >> temp->emailid;
+	getline(cin, temp->emailid);
 	fflush(stdin);
 	if (START==NULL)
 	{
@@ -56,7 +58,7 @@ void insertnode()
 		t->link = temp;
 	}
 }
-void deletenode()
+void deletenode()//to delete any node 
 {
 	if (START==NULL)
 	{
@@ -64,7 +66,7 @@ void deletenode()
 		return;
 	}
 	char ph[9];
-	cout << "Enter phone number to be deleted";
+	cout << "Enter phone number to be deleted ";
 	cin >> ph;
 	struct node* t,* del;
 	struct node* temp, * prev;
@@ -96,7 +98,7 @@ void deletenode()
 		cout << "Contact deleted successfully" << endl;
 	}
 }
-void searchnode()
+void searchnode()//to search any node
 {
 	if (START == NULL)
 	{
@@ -143,7 +145,7 @@ void searchnode()
 		cout << "Contact deleted " << ph << endl;
 	}
 }
-void display()
+void display()//to display the linked list
 {
 	struct node* d;
 	d = START;
