@@ -35,13 +35,11 @@ void insertnode()//to insert node at end of database
 	serialnumber++;
 	temp->sno = serialnumber;
 	cout << "Enter information about the contact\n";
-	fflush(stdin);
-	cout << "Enter contact name ";
-	cin.ignore();
-	getline(cin, temp->name);
-	fflush(stdin);
 	cout << "Enter contact phone number ";
+	cin.ignore();
 	getline(cin, temp->phonenumber);
+	cout << "Enter contact name ";
+	getline(cin, temp->name);
 	fflush(stdin);
 	cout << "Enter contact email id ";
 	getline(cin, temp->emailid);
